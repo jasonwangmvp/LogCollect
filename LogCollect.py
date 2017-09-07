@@ -12,11 +12,11 @@ addstr = '\033[1;33m' + '-add' + '\033[0m'
 wstr = '\033[1;33m' + '-w' + '\033[0m'
 cstr = '\033[1;33m' + '-c' + '\033[0m'
 
-help_str = '[' + hstr + '] ' + '[' + wfstr +' dir ext]' + '[' + lstr + '] [' + rfstr + ' pos] [' + addstr + ' lv word] [' + wstr + ' ][' + cstr + ']\n' \
+help_str = '[' + hstr + '] ' + '[' + wfstr +' dir ext]' + '[' + lstr + '] [' + rfstr + ' posFlag] [' + addstr + ' lv word] [' + wstr + ' ][' + cstr + ']\n' \
            "--heap]\n" \
            "--watch] file directory [dir] extension [ext]\n" \
            "--look] matching words\n" \
-           "--reload] file begin(0) or end(1)\n" \
+           "--reload] file [posFlag] 0=begin else=end\n" \
            "--add] matching words [word]\n" \
            "--write] file\n" \
            "--clear matching words\n"\
@@ -58,10 +58,10 @@ def watch_file(fileName, file, begin = False):
         if _line:
             for normal_str in normal_list:
                 if _line.find(normal_str) != -1:
-                    print(_line[:-1])
+                    print(_line.strip('\n'))
             for high_str in high_list:
                 if _line.find(high_str) != -1:
-                    print('\033[1;31m' + _line[:-1] + '\033[0m')
+                    print('\033[1;31m' + _line.strip('\n') + '\033[0m')
         else:
             file.seek(pos)
             status = ''
