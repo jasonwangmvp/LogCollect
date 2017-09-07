@@ -89,10 +89,10 @@ def watch_files(path, ext, posFlag = False):
         if os.path.isfile(filePath):
             print(filePath)
 
-        file = open(filePath, 'r', encoding='utf-8')
-        fileThread = threading.Thread(target=watch_file, args=(fileName, file, posFlag))
-        file_thread_list[fileName] = {"status":"run", "thread":fileThread}
-        fileThread.start()
+            file = open(filePath, 'r', encoding='utf-8')
+            fileThread = threading.Thread(target=watch_file, args=(fileName, file, posFlag))
+            file_thread_list[fileName] = {"status":"run", "thread":fileThread}
+            fileThread.start()
 
     WATCHING = True
     PATH = path
